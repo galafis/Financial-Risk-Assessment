@@ -2,7 +2,7 @@
 import pandas as pd
 import pytest
 from src.main import FinancialRiskAssessment
-import os
+
 
 # Criar um arquivo CSV de exemplo para testes
 @pytest.fixture(scope="module")

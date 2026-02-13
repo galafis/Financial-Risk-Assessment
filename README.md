@@ -1,155 +1,98 @@
-# ⚠️ Financial Risk Assessment
+# Financial Risk Assessment
 
-> A comprehensive financial risk assessment project by Gabriel Demetrios Lafis.
-
-[![Python](https://img.shields.io/badge/Python-3.12-3776AB.svg)](https://img.shields.io/badge/)
-[![Docker](https://img.shields.io/badge/Docker-Ready-2496ED.svg)](https://img.shields.io/badge/)
-[![Pandas](https://img.shields.io/badge/Pandas-2.2-150458.svg)](https://img.shields.io/badge/)
-[![scikit--learn](https://img.shields.io/badge/scikit--learn-1.4-F7931E.svg)](https://img.shields.io/badge/)
+[![Python](https://img.shields.io/badge/Python-3.12-3776AB.svg)](https://www.python.org/)
+[![scikit-learn](https://img.shields.io/badge/scikit--learn-1.4-F7931E.svg)](https://scikit-learn.org/)
+[![pandas](https://img.shields.io/badge/pandas-2.2-150458.svg)](https://pandas.pydata.org/)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-[English](#english) | [Português](#português)
+[Portugues](#portugues) | [English](#english)
 
 ---
 
-## English
+## Portugues
 
-### 🎯 Overview
+### Visao Geral
 
-**Financial Risk Assessment** is a production-grade Python application complemented by HTML that showcases modern software engineering practices including clean architecture, comprehensive testing, containerized deployment, and CI/CD readiness.
+Ferramenta de classificacao de risco financeiro usando Python e scikit-learn. Um unico script (`src/main.py`, 168 linhas) que carrega dados financeiros de um CSV, pre-processa as features, treina um RandomForestClassifier para prever niveis de risco (baixo, medio, alto) e gera metricas de avaliacao.
 
-The codebase comprises **229 lines** of source code organized across **4 modules**, following industry best practices for maintainability, scalability, and code quality.
+### Funcionalidades
 
-### ✨ Key Features
+- Carregamento de dados a partir de arquivo CSV (ou geracao de dados de exemplo)
+- Pre-processamento: preenchimento de valores ausentes (media para numericos, moda para categoricos) e one-hot encoding
+- Treinamento de modelo RandomForestClassifier
+- Avaliacao com acuracia e relatorio de classificacao
+- Testes unitarios com pytest
 
-- **🐳 Containerized**: Docker support for consistent deployment
-- **🏗️ Object-Oriented**: 1 core classes with clean architecture
-- **📐 Clean Architecture**: Modular design with clear separation of concerns
-- **🧪 Test Coverage**: Unit and integration tests for reliability
-- **📚 Documentation**: Comprehensive inline documentation and examples
-- **🔧 Configuration**: Environment-based configuration management
-
-### 🏗️ Architecture
+### Arquitetura
 
 ```mermaid
 graph LR
-    subgraph Input["📥 Input"]
-        A[Raw Data]
-        B[Feature Config]
-    end
-    
-    subgraph Pipeline["🔬 ML Pipeline"]
-        C[Preprocessing]
-        D[Feature Engineering]
-        E[Model Training]
-        F[Evaluation]
-    end
-    
-    subgraph Output["📤 Output"]
-        G[Trained Models]
-        H[Metrics & Reports]
-        I[Predictions]
-    end
-    
-    A --> C --> D --> E --> F
-    B --> D
-    F --> G
-    F --> H
-    G --> I
-    
-    style Input fill:#e1f5fe
-    style Pipeline fill:#f3e5f5
-    style Output fill:#e8f5e9
+    A[Dados CSV] --> B[Pre-processamento]
+    B --> C[Treinamento RandomForest]
+    C --> D[Avaliacao]
+    D --> E[Acuracia + Relatorio]
 ```
 
-### 🚀 Quick Start
+### Como Usar
 
-#### Prerequisites
+#### Pre-requisitos
 
 - Python 3.12+
-- pip (Python package manager)
+- pip
 
-#### Installation
+#### Instalacao
 
 ```bash
-# Clone the repository
 git clone https://github.com/galafis/Financial-Risk-Assessment.git
 cd Financial-Risk-Assessment
-
-# Create and activate virtual environment
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
+source venv/bin/activate  # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-#### Running
+#### Execucao
 
 ```bash
-# Run the application
 python src/main.py
 ```
 
-### 🧪 Testing
+O script gera um CSV de exemplo (`financial_data.csv`), treina o modelo e exibe a acuracia e o relatorio de classificacao no terminal.
+
+#### Testes
 
 ```bash
-# Run all tests
-pytest
-
-# Run with coverage report
-pytest --cov --cov-report=html
-
-# Run specific test module
-pytest tests/test_main.py -v
-
-# Run with detailed output
-pytest -v --tb=short
+pytest tests/
 ```
 
-### 📁 Project Structure
+### Estrutura do Projeto
 
 ```
 Financial-Risk-Assessment/
-├── docs/          # Documentation
-│   ├── images/
-│   └── README.md
-├── src/          # Source code
+├── src/
 │   ├── __init__.py
-│   └── main.py
-├── tests/         # Test suite
-│   └── test_main.py
-├── Dockerfile
+│   └── main.py          # Script principal (168 linhas)
+├── tests/
+│   └── test_main.py     # Testes unitarios
+├── .gitignore
 ├── LICENSE
 ├── README.md
 └── requirements.txt
 ```
 
-### 🛠️ Tech Stack
+### Stack
 
-| Technology | Description | Role |
-|------------|-------------|------|
-| **Python** | Core Language | Primary |
-| **Docker** | Containerization platform | Framework |
-| **Pandas** | Data manipulation library | Framework |
-| **scikit-learn** | Machine learning library | Framework |
-| HTML | 1 files | Supporting |
+| Tecnologia | Uso |
+|---|---|
+| Python | Linguagem principal |
+| pandas | Manipulacao de dados |
+| scikit-learn | Treinamento e avaliacao do modelo |
+| pytest | Testes unitarios |
 
-### 🤝 Contributing
+### Licenca
 
-Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
+Este projeto esta licenciado sob a Licenca MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
 
-1. Fork the project
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-### 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-### 👤 Author
+### Autor
 
 **Gabriel Demetrios Lafis**
 - GitHub: [@galafis](https://github.com/galafis)
@@ -157,138 +100,90 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-## Português
+## English
 
-### 🎯 Visão Geral
+### Overview
 
-**Financial Risk Assessment** é uma aplicação Python de nível profissional, complementada por HTML que demonstra práticas modernas de engenharia de software, incluindo arquitetura limpa, testes abrangentes, implantação containerizada e prontidão para CI/CD.
+Financial risk classification tool using Python and scikit-learn. A single script (`src/main.py`, 168 lines) that loads financial data from a CSV, preprocesses features, trains a RandomForestClassifier to predict risk levels (low, medium, high), and outputs evaluation metrics.
 
-A base de código compreende **229 linhas** de código-fonte organizadas em **4 módulos**, seguindo as melhores práticas do setor para manutenibilidade, escalabilidade e qualidade de código.
+### Features
 
-### ✨ Funcionalidades Principais
+- Load data from CSV file (or generate sample data)
+- Preprocessing: fill missing values (mean for numeric, mode for categorical) and one-hot encoding
+- Train a RandomForestClassifier model
+- Evaluate with accuracy score and classification report
+- Unit tests with pytest
 
-- **🐳 Containerized**: Docker support for consistent deployment
-- **🏗️ Object-Oriented**: 1 core classes with clean architecture
-- **📐 Clean Architecture**: Modular design with clear separation of concerns
-- **🧪 Test Coverage**: Unit and integration tests for reliability
-- **📚 Documentation**: Comprehensive inline documentation and examples
-- **🔧 Configuration**: Environment-based configuration management
-
-### 🏗️ Arquitetura
+### Architecture
 
 ```mermaid
 graph LR
-    subgraph Input["📥 Input"]
-        A[Raw Data]
-        B[Feature Config]
-    end
-    
-    subgraph Pipeline["🔬 ML Pipeline"]
-        C[Preprocessing]
-        D[Feature Engineering]
-        E[Model Training]
-        F[Evaluation]
-    end
-    
-    subgraph Output["📤 Output"]
-        G[Trained Models]
-        H[Metrics & Reports]
-        I[Predictions]
-    end
-    
-    A --> C --> D --> E --> F
-    B --> D
-    F --> G
-    F --> H
-    G --> I
-    
-    style Input fill:#e1f5fe
-    style Pipeline fill:#f3e5f5
-    style Output fill:#e8f5e9
+    A[CSV Data] --> B[Preprocessing]
+    B --> C[RandomForest Training]
+    C --> D[Evaluation]
+    D --> E[Accuracy + Report]
 ```
 
-### 🚀 Início Rápido
+### Usage
 
 #### Prerequisites
 
 - Python 3.12+
-- pip (Python package manager)
+- pip
 
 #### Installation
 
 ```bash
-# Clone the repository
 git clone https://github.com/galafis/Financial-Risk-Assessment.git
 cd Financial-Risk-Assessment
-
-# Create and activate virtual environment
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
+source venv/bin/activate  # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-#### Running
+#### Run
 
 ```bash
-# Run the application
 python src/main.py
 ```
 
-### 🧪 Testing
+The script generates a sample CSV (`financial_data.csv`), trains the model, and prints accuracy and classification report to the terminal.
+
+#### Tests
 
 ```bash
-# Run all tests
-pytest
-
-# Run with coverage report
-pytest --cov --cov-report=html
-
-# Run specific test module
-pytest tests/test_main.py -v
-
-# Run with detailed output
-pytest -v --tb=short
+pytest tests/
 ```
 
-### 📁 Estrutura do Projeto
+### Project Structure
 
 ```
 Financial-Risk-Assessment/
-├── docs/          # Documentation
-│   ├── images/
-│   └── README.md
-├── src/          # Source code
+├── src/
 │   ├── __init__.py
-│   └── main.py
-├── tests/         # Test suite
-│   └── test_main.py
-├── Dockerfile
+│   └── main.py          # Main script (168 lines)
+├── tests/
+│   └── test_main.py     # Unit tests
+├── .gitignore
 ├── LICENSE
 ├── README.md
 └── requirements.txt
 ```
 
-### 🛠️ Stack Tecnológica
+### Stack
 
-| Tecnologia | Descrição | Papel |
-|------------|-----------|-------|
-| **Python** | Core Language | Primary |
-| **Docker** | Containerization platform | Framework |
-| **Pandas** | Data manipulation library | Framework |
-| **scikit-learn** | Machine learning library | Framework |
-| HTML | 1 files | Supporting |
+| Technology | Usage |
+|---|---|
+| Python | Core language |
+| pandas | Data manipulation |
+| scikit-learn | Model training and evaluation |
+| pytest | Unit tests |
 
-### 🤝 Contribuindo
+### License
 
-Contribuições são bem-vindas! Sinta-se à vontade para enviar um Pull Request.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-### 📄 Licença
-
-Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
-
-### 👤 Autor
+### Author
 
 **Gabriel Demetrios Lafis**
 - GitHub: [@galafis](https://github.com/galafis)
